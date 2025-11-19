@@ -1,19 +1,12 @@
-// next.config.js
-import withPWAInit from "next-pwa";
+// next.config.mjs
+import withSerwist from "@serwist/next";
 
-const withPWA = withPWAInit({
-  dest: "public",
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === "development", // SW disabled in dev
-});
-
-const nextConfig = {
-  reactStrictMode: true,
-
-  experimental: {
-    optimizePackageImports: ["firebase"],
-  },
+const serwistConfig = {
+  swSrc: "public/src/sw.js",
+  swDest: "public/sw.js",
+  disable: process.env.NODE_ENV === "development",
 };
 
-export default withPWA(nextConfig);
+const nextConfig = { /* ... */ };
+
+export default withSerwist(serwistConfig)(nextConfig);
